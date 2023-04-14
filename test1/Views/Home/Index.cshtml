@@ -5,8 +5,55 @@
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <h3>@ViewData["customer"] </h3>
-    
+
     <p>@ViewData["result"]</p>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th> Customer Id</th>
+                    <th>Customer Name </th>
+                    <th>Customer Address </th>
+                </tr>
+            </thead>    
+            <tbody>
+                @foreach (Customer items in ViewBag.AllCustomer)
+                {
+                    <tr>
+                        <td>@items.CustomerID</td>
+                        <td>@items.FullName</td>
+                        <td>@items.Address</td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th> Product Id</th>
+                    <th>Product Name </th>
+                    <th>Product Price </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Product items in ViewBag.AllProduct)
+                {
+                    <tr>
+                        <td>@items.ProductID</td>
+                        <td>@items.ProductName</td>
+                        <td>@items.ProductPrice</td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+    </div>
 </div>
 

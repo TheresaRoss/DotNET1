@@ -11,11 +11,14 @@ namespace test1.Controllers
     {
         public IActionResult Index()
         {
-            Customer c = new Customer();
-            c.CustomerID = 1;
-            c.FullName = "Johny Dave";
-            c.Address = "Patcharapon Seesatpank";
-            return View(c);
+            var c = new List<Customer>();
+            c.Add(new() { CustomerID = 21, Address = "BKK", FullName = "Tapon Seerat" });
+            c.Add(new() { CustomerID = 69, Address = "TOK", FullName = "Miyasaki Hoshii" });
+            c.Add(new() { CustomerID = 11, Address = "OSA", FullName = "Hida Joshou" });
+            
+            return View("Data",c);  //this way, when searching for /customer it will call /customer/data in View file
+            //instead of calling /customer/index
+
         }
     }
 }
