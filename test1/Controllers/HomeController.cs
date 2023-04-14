@@ -15,6 +15,19 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        var Customer = ("John", "Dave");
+
+        int result = 0;
+
+        int AddData(int num1,int num2)
+        {
+            return num1 + num2;
+        }
+
+        ViewData["result"] = AddData(200, 444);
+
+
+        ViewData["customer"] = "Yoma " + Customer.Item1 + " " + Customer.Item2;
         return View();
     }
     public IActionResult Info()
