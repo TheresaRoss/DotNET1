@@ -1,15 +1,19 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using test1.Models;
+using Microsoft.EntityFrameworkCore;
+using test1.Models.db;
 
 namespace test1.Controllers;
 
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
+    private readonly DemoShopContext _db;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(ILogger<HomeController> logger,DemoShopContext db)
     {
+        _db = db;
         _logger = logger;
     }
 
@@ -26,11 +30,13 @@ public class HomeController : Controller
 
         ViewData["result"] = AddData(200, 444);
         ViewData["AllCustomer"] = GetAllCustomer();
-        ViewData["AllProduct"] = GetAllProduct();
+        //ViewData["AllProduct"] = GetAllProduct();
 
 
         ViewData["customer"] = "Yoma " + Customer.Item1 + " " + Customer.Item2;
-        return View();
+
+        var product = from item in _db.Products select item;
+        return View(product);
     }
     public IActionResult Info()
     {
@@ -58,14 +64,6 @@ public class HomeController : Controller
         return c;
     }
 
-    private List<Product> GetAllProduct()
-    {
-        var c = new List<Product>();
-        c.Add(new() { ProductID=1 ,ProductName="Table",ProductPrice=500 });
-        c.Add(new() { ProductID = 2, ProductName = "Chair", ProductPrice = 230 });
-        c.Add(new() { ProductID = 3, ProductName = "Lantern", ProductPrice = 100 });
-
-        return c;
-    }
+  
 }
 

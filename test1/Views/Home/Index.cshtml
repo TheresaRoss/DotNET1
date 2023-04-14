@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<test1.Models.db.Product>
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -18,34 +19,10 @@
                 </tr>
             </thead>    
             <tbody>
-                @foreach (Customer items in ViewBag.AllCustomer)
+                @foreach (var items in Model)
                 {
                     <tr>
-                        <td>@items.CustomerID</td>
-                        <td>@items.FullName</td>
-                        <td>@items.Address</td>
-                    </tr>
-                }
-
-            </tbody>
-        </table>
-
-    </div>
-
-    <div class="container">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th> Product Id</th>
-                    <th>Product Name </th>
-                    <th>Product Price </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (Product items in ViewBag.AllProduct)
-                {
-                    <tr>
-                        <td>@items.ProductID</td>
+                        <td>@items.ProductId</td>
                         <td>@items.ProductName</td>
                         <td>@items.ProductPrice</td>
                     </tr>
@@ -55,5 +32,7 @@
         </table>
 
     </div>
+
+   
 </div>
 

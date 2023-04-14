@@ -1,4 +1,9 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using Microsoft.EntityFrameworkCore;
+using test1.Models.db;
+
+var builder = WebApplication.CreateBuilder(args);
+//Add database 
+builder.Services.AddDbContext<DemoShopContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("DemoShoDB")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
